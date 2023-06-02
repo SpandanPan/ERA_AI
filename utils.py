@@ -1,5 +1,6 @@
 
 from torchvision import datasets, transforms
+import torch
 # Train data transformations
 train_transforms = transforms.Compose([
     transforms.RandomApply([transforms.CenterCrop(22), ], p=0.1),
@@ -14,3 +15,6 @@ test_transforms = transforms.Compose([
     transforms.ToTensor(),
     transforms.Normalize((0.1407,), (0.4081,))
     ])
+
+use_cuda = torch.cuda.is_available()
+device = torch.device("cuda" if use_cuda else "cpu")
